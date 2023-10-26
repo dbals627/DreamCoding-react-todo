@@ -4,7 +4,7 @@ import styles from "./Todo.module.css";
 
 // todo 체크박스와 삭제 버튼
 function Todo({ todo, onUpdate, onDelete }) {
-  const { text, status } = todo;
+  const { id, text, status } = todo;
   const handleChange = (e) => {
     const status = e.target.checked ? "completed" : "active";
     onUpdate({ ...todo, status });
@@ -15,13 +15,14 @@ function Todo({ todo, onUpdate, onDelete }) {
       <input
         className={styles.checkbox}
         type="checkbox"
-        id="checkbox"
+        id={id}
         checked={status === "completed"}
         onChange={handleChange}
       />
-      <label htmlFor="checkbox" className={styles.text}>
+      <label htmlFor={id} className={styles.text}>
         {text}
       </label>
+
       <span className={styles.icon}>
         <button onClick={handleDelete} className={styles.button}>
           <FaTrashAlt />
